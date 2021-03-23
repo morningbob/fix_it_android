@@ -5,20 +5,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:background="#A8CADA"
-		tools:context=".FirstFragment">
-
-	<ImageView
-			android:id="@+id/imageView"
-			android:layout_width="350dp"
-			android:layout_height="418dp"
-			android:contentDescription="TODO"
-			android:layout_marginTop="20dp"
-			android:layout_marginLeft="20dp"
-			android:layout_marginRight="20dp"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			tools:src="@tools:sample/backgrounds/scenic" />
+		tools:context=".HomeFragment">
 
 	<Button
 			android:id="@+id/button_load"
@@ -27,8 +14,18 @@
 			android:text="@string/load"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent" />
+
+	<TextView
+			android:id="@+id/textView"
+			android:layout_width="286dp"
+			android:layout_height="82dp"
+			android:layout_marginTop="188dp"
+			android:text="TextView"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.496"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/imageView" />
+			app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
