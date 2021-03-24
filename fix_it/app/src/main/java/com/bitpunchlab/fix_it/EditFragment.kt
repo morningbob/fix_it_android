@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.bitpunchlab.fix_it.databinding.FragmentEditBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -18,7 +20,10 @@ class EditFragment : Fragment() {
 			savedInstanceState: Bundle?
 	): View? {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_edit, container, false)
+		val binding: FragmentEditBinding = DataBindingUtil.inflate(inflater,
+			R.layout.fragment_edit, container, false)
+		binding.lifecycleOwner = this
+		return binding.root
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
