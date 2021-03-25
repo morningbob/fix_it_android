@@ -15,7 +15,7 @@
 			tools:context=".EditFragment">
 
 		<ImageView
-				android:id="@+id/imageView"
+				android:id="@+id/imageToEdit"
 				android:layout_width="350dp"
 				android:layout_height="418dp"
 				android:layout_marginLeft="20dp"

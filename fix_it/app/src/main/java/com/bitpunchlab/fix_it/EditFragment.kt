@@ -1,6 +1,15 @@
 package com.bitpunchlab.fix_it
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.ImageDecoder
+import android.media.Image
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +18,14 @@ import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.bitpunchlab.fix_it.databinding.FragmentEditBinding
+import java.io.IOException
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
+
+private const val PICK_PHOTO_CODE = 1046
+
 class EditFragment : Fragment() {
 
 	override fun onCreateView(
@@ -23,6 +36,8 @@ class EditFragment : Fragment() {
 		val binding: FragmentEditBinding = DataBindingUtil.inflate(inflater,
 			R.layout.fragment_edit, container, false)
 		binding.lifecycleOwner = this
+		//binding.imageToEdit.setImageBitmap(BitmapFactory.decodeFile())
+		//binding.buttonHome.setOnClickListener {  }
 		return binding.root
 	}
 
@@ -32,5 +47,29 @@ class EditFragment : Fragment() {
 		view.findViewById<Button>(R.id.button_home).setOnClickListener {
 			findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
 		}
+	}
+
+	fun onPickPhoto(view: View) {
+		val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+		// If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+		// So as long as the result is not null, it's safe to use the intent.
+		if (context?.let { intent.resolveActivity(it.packageManager) } != null) {
+			startActivityForResult(intent, PICK_PHOTO_CODE)
+		}
+	}
+
+	fun loadFromUri(photoUri: Uri) : Bitmap? {
+		var image : Bitmap? = null
+		try {
+			if (Build.VERSION.SDK_INT > 27) {
+				val source = context?.let { ImageDecoder.createSource(it.contentResolver, photoUri) }
+				image = source?.let { ImageDecoder.decodeBitmap(it) }
+			} else {
+				image = MediaStore.Images.Media.getBitmap(context?.contentResolver, photoUri)
+			}
+		} catch (e: IOException) {
+			e.printStackTrace()
+		}
+		return image
 	}
 }
