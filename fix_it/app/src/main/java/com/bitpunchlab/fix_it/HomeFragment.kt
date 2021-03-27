@@ -29,7 +29,6 @@ private const val PICK_PHOTO_CODE = 1046
 class HomeFragment : Fragment() {
 
 	private lateinit var binding: FragmentHomeBinding
-	private var imageToEdit: Bitmap? = null
 	private val viewModel: ImageViewModel by activityViewModels()
 
 	override fun onCreateView(
@@ -83,7 +82,7 @@ class HomeFragment : Fragment() {
 			val photoUri = data.data
 
 			viewModel.imageToEdit.value = photoUri?.let { loadFromUri(it) }
-
+			viewModel.photoUri.value = photoUri
 			//ivPreview =
 			// ivPreview.setImageBitmap(selectedImage)
 		}
