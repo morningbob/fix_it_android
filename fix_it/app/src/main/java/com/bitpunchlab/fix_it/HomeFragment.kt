@@ -15,6 +15,7 @@ import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bitpunchlab.fix_it.databinding.FragmentEditBinding
 import com.bitpunchlab.fix_it.databinding.FragmentHomeBinding
@@ -48,9 +49,7 @@ class HomeFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		view.findViewById<Button>(R.id.button_load).setOnClickListener {
-			findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-		}
+
 	}
 
 	fun onPickPhoto(view: View) {
@@ -83,8 +82,8 @@ class HomeFragment : Fragment() {
 
 			viewModel.imageToEdit.value = photoUri?.let { loadFromUri(it) }
 			viewModel.photoUri.value = photoUri
-			//ivPreview =
-			// ivPreview.setImageBitmap(selectedImage)
+			// navigate to Edit Fragment
+			view.findNavController().navigate(HomeFragmentDirection)
 		}
 	}
 }

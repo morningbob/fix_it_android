@@ -42,8 +42,7 @@ class EditFragment : Fragment() {
 		binding = DataBindingUtil.inflate(inflater,
 			R.layout.fragment_edit, container, false)
 		binding.lifecycleOwner = this
-		//binding.imageToEdit.setImageBitmap(BitmapFactory.decodeFile())
-		//binding.buttonHome.setOnClickListener {  }
+
 		binding.imageToEdit.setImageBitmap(viewModel.imageToEdit.value)
 		return binding.root
 	}
@@ -52,7 +51,7 @@ class EditFragment : Fragment() {
 		super.onViewCreated(view, savedInstanceState)
 
 		view.findViewById<Button>(R.id.button_home).setOnClickListener {
-			findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+			findNavController().navigate(R.id.action_EditFragment_to_HomeFragment)
 		}
 	}
 
