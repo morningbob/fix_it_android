@@ -83,7 +83,7 @@ class HomeFragment : Fragment() {
 			viewModel.imageToEdit.value = photoUri?.let { loadFromUri(it) }
 			viewModel.photoUri.value = photoUri
 			// navigate to Edit Fragment
-			view.findNavController().navigate(HomeFragmentDirection)
+			view?.findNavController().navigate()
 		}
 	}
 }
